@@ -1,0 +1,21 @@
+html
+    head
+        title Merhaba Pug
+
+    body
+        span(style="color:#fff; background-color:#333;") Merhaba pug :)
+            | Merhaba #{ name } Yaş: #{ age }
+
+        br
+        include footer.pug
+
+        //pug açıklama satırı
+
+        - var okul = 'Celal Bayar Üniversitesi'
+        - var sehir = 'Manisa'
+
+
+        hr
+
+        =okul
+        | Bulunduğu Şehir #{ sehir.toUpperCase()  }

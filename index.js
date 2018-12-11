@@ -74,7 +74,7 @@ server.listen(3000);
 
 //nodemon ile çalıştır
 
- */
+
 
 const fs = require('fs');
 const file = 'video2.mp4';
@@ -105,5 +105,48 @@ readStream.on('end',()=>{
     //console.log(progress);
 });
 
- */
+
 });
+
+const http = require("http");
+const fs = require("fs");
+
+const server = http.createServer((request , response)=>{
+    console.log("Bir istekte bulunuldu");
+
+    response.writeHead(200, { 'content-type': 'text/html; charset=utf8'});
+    fs.readFile ('index.html', (err,data)=> {
+        if (err)
+            throw err;
+
+        response.end(data);
+    });
+});
+
+server.listen(3000);
+
+ */
+
+    const express = require('express');
+    const app = express();
+
+    app.set('view engine','pug');
+
+
+    app.get('/',(req, res)=>{
+        res.render('index.pug',{name:'Burak',age:23});
+    });
+
+    app.listen(3000,()=>{
+        console.log("Express Server Çalıştı");
+    });
+
+
+
+
+
+
+
+
+
+
