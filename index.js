@@ -137,6 +137,14 @@ server.listen(3000);
         res.render('index.pug',{name:'Burak',age:23});
     });
 
+    app.get('/home',(req, res)=>{
+        res.render('home.pug');
+    });
+
+    app.get('/contact',(req, res)=>{
+        res.render('contact.pug');
+    });
+
     app.listen(3000,()=>{
         console.log("Express Server Çalıştı");
     });
