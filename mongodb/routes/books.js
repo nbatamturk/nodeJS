@@ -7,11 +7,11 @@ const Book = require('../models/Book.js');
 /* GET users listing. */
 router.get('/new', function(req, res, next) {
     const book = new Book({
-        title: 'Elon Musk',
+        title: 'Burak',
         publicId: false,
         comments: [
-            { message:'Harika bir kitap'},
-            { message:'Kitap Fena değil okunur'}
+            { message:'yorum1'},
+            { message:'yorum2'}
             ],
         meta:{
             votes:12,
@@ -29,6 +29,19 @@ router.get('/new', function(req, res, next) {
 
     //res.send('respond with a resource');
 });
+
+router.get('/search',(req,res)=>{
+    Book.find({ published:false },'comments',(err,data)=>{
+        res.json(data);
+    });
+});
+
+router.get('/searchone',(req,res)=>{
+    Book.findOne({title:'Burak'},(err,data)=>{
+        res.json(data);
+    });
+});
+
 
 module.exports = router;
 /**

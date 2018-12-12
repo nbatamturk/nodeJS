@@ -5,12 +5,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
-    title: String,
-    publicId: Boolean,
+    title: {
+        type:String,
+        required:true,
+        unique:true
+    },
     comments: [{message:String}],
     meta:{
         votes: Number,
         favs: Number
+    },
+    published: {
+        type: Boolean,
+        default:false,
+        unique:true
+    },
+    publishedAt:{
+        type: Date,
+        default: Date.now(),
+        unique:true
     }
 });
 
