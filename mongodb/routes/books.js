@@ -7,15 +7,15 @@ const Book = require('../models/Book.js');
 /* GET users listing. */
 router.get('/new', function(req, res, next) {
     const book = new Book({
-        title: 'Burak',
-        publicId: false,
+        title: 'Burak2',
+        publicId: true,
         comments: [
-            { message:'yorum1'},
-            { message:'yorum2'}
+            { message:'yorum3'},
+            { message:'yorum4'}
             ],
         meta:{
-            votes:12,
-            favs:50
+            votes:42,
+            favs:30
         }
 
     });
@@ -42,6 +42,48 @@ router.get('/searchone',(req,res)=>{
     });
 });
 
+router.get('/searchbyid',(req,res)=>{
+    Book.findById("5c11fcaefa85af168056a1cc",(err,data)=>{
+       res.json(data);
+    });
+});
+
+    router.get('/update',(req,res)=>{
+        Book.update({
+            published: false
+            },
+            {
+            published:true , title:"deneme"
+            },
+            {
+            upsert:true
+            //multi:true
+            },(err,data)=>{
+            res.json(data);
+        });
+    });
+
+    router.get('/updatebyid',(req,res)=>{
+        Book.findByIdAndUpdate(
+                '5c11fcaefa85af168056a1cc'
+            ,
+            {
+                published:true,
+                title:"Deneme id ile güncelleme",
+                'meta.favs':150
+            },
+            (err,data)=>{
+                res.json(data);
+            });
+    });
+
+    router.get('/remove',(req,res)=>{
+        Book.findById("5c11fcb5fa85af168056a1cf",(err,book)=>{
+            book.remove((err,data)=>{
+                res.json(data);
+            });
+        });
+    });
 
 module.exports = router;
 /**
